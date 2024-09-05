@@ -6,15 +6,67 @@
     <title>Animations Testing Lab</title>
     <!-- Link to home.css for homepage-specific styles -->
     <link rel="stylesheet" href="home.css">
+    <style>
+        /* Make sure the canvas from Three.js fills the background */
+        canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: -1; /* Place canvas behind the content */
+        }
+
+        /* Optional: Add a semi-transparent background to the content for better readability */
+        .content {
+            position: relative;
+            z-index: 1;
+            background-color: rgba(255, 255, 255, 0.8);
+            padding: 20px;
+            border-radius: 10px;
+        }
+    </style>
 </head>
 <body>
-    <h1>Welcome to the Animations Testing Lab</h1>
-    <p>This site hosts a canvas for testing animations. Click the links below to view different animations.</p>
+    <div class="content">
+        <h1>Welcome to the Animations Testing Lab</h1>
+        <p>This site hosts a canvas for testing animations. Click the links below to view different animations.</p>
 
-    <ul>
-        <li><a href="canvas1.html">View Animation 1 (Moving Circle)</a></li>
-        <li><a href="canvas2.html">View Animation 2 (Expanding Circle)</a></li>
-        <li><a href="canvas3.html">View Animation 3 (Random Squares)</a></li>
-    </ul>
+        <ul>
+            <li><a href="canvas1.html">View Animation 1 (Moving Circle)</a></li>
+            <li><a href="canvas2.html">View Animation 2 (Expanding Circle)</a></li>
+            <li><a href="canvas3.html">View Animation 3 (Random Squares)</a></li>
+        </ul>
+    </div>
+
+    <!-- Three.js Animation Code -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script>
+        import * as THREE from 'three';
+
+        const width = window.innerWidth, height = window.innerHeight;
+
+        // init
+        const camera = new THREE.PerspectiveCamera( 70, width / height, 0.01, 10 );
+        camera.position.z = 1;
+
+        const scene = new THREE.Scene();
+
+        const geometry = new THREE.BoxGeometry( 0.2, 0.2, 0.2 );
+        const material = new THREE.MeshNormalMaterial();
+
+        const mesh = new THREE.Mesh( geometry, material );
+        scene.add( mesh );
+
+        const renderer = new THREE.WebGLRenderer( { antialias: true } );
+        renderer.setSize( width, height );
+        renderer.setAnimationLoop( animate );
+        document.body.appendChild( renderer.domElement );
+
+        // animation
+        function animate( time ) {
+            mesh.rotation.x = time / 2000;
+            mesh.rotation.y = time / 1000;
+            renderer.render( scene, camera );
+        }
+    </script>
 </body>
 </html>
