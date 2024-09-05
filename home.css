@@ -1,36 +1,51 @@
 /* Style for the homepage (index.html) */
-body {
-    margin: 0;
-    font-family: 'Arial', sans-serif;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
+
+/* Ensure the Three.js canvas takes the full screen and stays in the background */
+canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1; /* Ensure canvas stays behind content */
+    width: 100vw;
     height: 100vh;
-    background-color: #f4f4f4;
 }
 
+/* Optional: Adjust content background for readability */
+.content {
+    position: relative;
+    z-index: 1;
+    background-color: rgba(255, 255, 255, 0.9); /* Slightly transparent background for readability */
+    padding: 20px;
+    border-radius: 10px;
+    max-width: 600px; /* Restrict width for better readability */
+    margin: auto; /* Center the content */
+    text-align: center; /* Center text */
+}
+
+/* Styling the main heading */
 h1 {
     font-size: 2.5rem;
     margin-bottom: 20px;
 }
 
+/* Paragraph styling */
 p {
     font-size: 1.2rem;
     margin-bottom: 30px;
-    text-align: center;
-    max-width: 600px;
 }
 
+/* Remove list styles from the links list */
 ul {
     list-style-type: none;
     padding: 0;
 }
 
+/* List items */
 ul li {
     margin-bottom: 10px;
 }
 
+/* Styling for the links */
 ul li a {
     text-decoration: none;
     color: #4a90e2;
@@ -38,6 +53,7 @@ ul li a {
     transition: color 0.3s ease;
 }
 
+/* Hover effect for links */
 ul li a:hover {
     color: #1c4a70;
 }
