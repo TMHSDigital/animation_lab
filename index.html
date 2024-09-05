@@ -4,10 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Animations Testing Lab</title>
-    <!-- Link to home.css for homepage-specific styles -->
     <link rel="stylesheet" href="home.css">
     <style>
-        /* Inline style for the canvas to ensure it's in the background */
+        /* Ensure the canvas takes up the whole screen */
         canvas {
             position: absolute;
             top: 0;
@@ -17,13 +16,15 @@
             height: 100vh;
         }
 
-        /* Optional: Keep the main content slightly transparent */
         .content {
             position: relative;
             z-index: 1;
             background-color: rgba(255, 255, 255, 0.9);
             padding: 20px;
             border-radius: 10px;
+            max-width: 600px;
+            margin: auto;
+            text-align: center;
         }
     </style>
 </head>
@@ -31,7 +32,6 @@
     <div class="content">
         <h1>Welcome to the Animations Testing Lab</h1>
         <p>This site hosts a canvas for testing animations. Click the links below to view different animations.</p>
-
         <ul>
             <li><a href="canvas1.html">View Animation 1 (Moving Circle)</a></li>
             <li><a href="canvas2.html">View Animation 2 (Expanding Circle)</a></li>
@@ -39,47 +39,10 @@
         </ul>
     </div>
 
-    <!-- Three.js CDN Script -->
+    <!-- Include the Three.js library -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     
-    <!-- Three.js Cube Animation -->
-    <script>
-        const width = window.innerWidth, height = window.innerHeight;
-
-        // Initialize scene and camera
-        const camera = new THREE.PerspectiveCamera( 70, width / height, 0.01, 10 );
-        camera.position.z = 1;
-
-        const scene = new THREE.Scene();
-
-        // Create cube geometry and material
-        const geometry = new THREE.BoxGeometry( 0.2, 0.2, 0.2 );
-        const material = new THREE.MeshNormalMaterial();
-        const mesh = new THREE.Mesh( geometry, material );
-        scene.add( mesh );
-
-        // Renderer
-        const renderer = new THREE.WebGLRenderer( { antialias: true } );
-        renderer.setSize( width, height );
-        document.body.appendChild( renderer.domElement );
-
-        // Animation loop
-        function animate( time ) {
-            mesh.rotation.x = time / 2000;
-            mesh.rotation.y = time / 1000;
-            renderer.render( scene, camera );
-        }
-
-        renderer.setAnimationLoop( animate );
-
-        // Handle window resize to adjust canvas size
-        window.addEventListener('resize', () => {
-            const width = window.innerWidth;
-            const height = window.innerHeight;
-            renderer.setSize(width, height);
-            camera.aspect = width / height;
-            camera.updateProjectionMatrix();
-        });
-    </script>
+    <!-- Include external Three.js animation script -->
+    <script src="threejs-animation.js"></script>
 </body>
 </html>
