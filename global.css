@@ -1,18 +1,42 @@
-/* General styles for the whole site */
-body {
+/* Global styles for all pages except homepage */
+
+/* Resetting default styles */
+* {
     margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Basic body styling for all pages */
+body {
     font-family: Arial, sans-serif;
+    background-color: black;
+    color: white;
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
-    background-color: #f4f4f4;
+    margin: 0;
+    overflow: hidden;
 }
 
-/* Styles specifically for the canvas page */
+/* Styles for the canvas on animation pages */
 canvas {
     display: block;
     background-color: black;
     width: 100vw;
     height: 100vh;
 }
+
+/* General utility styles */
+a {
+    color: #4a90e2;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+a:hover {
+    color: #1c4a70;
+}
+
+/* If needed, add other global utility styles here, like button styling */
