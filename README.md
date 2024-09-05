@@ -28,8 +28,6 @@ This project is hosted on **GitHub Pages**, allowing users to explore the animat
 - [Project Overview](#project-overview)
 - [Repository Structure](#repository-structure)
 - [Setup and Usage](#setup-and-usage)
-- [Deploying to GitHub Pages](#deploying-to-github-pages)
-- [License](#license)
 
 ## Repository Structure
 
