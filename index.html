@@ -7,19 +7,21 @@
     <!-- Link to home.css for homepage-specific styles -->
     <link rel="stylesheet" href="home.css">
     <style>
-        /* Make sure the canvas from Three.js fills the background */
+        /* Inline style for the canvas to ensure it's in the background */
         canvas {
             position: absolute;
             top: 0;
             left: 0;
-            z-index: -1; /* Place canvas behind the content */
+            z-index: -1;
+            width: 100vw;
+            height: 100vh;
         }
 
-        /* Optional: Add a semi-transparent background to the content for better readability */
+        /* Optional: Keep the main content slightly transparent */
         .content {
             position: relative;
             z-index: 1;
-            background-color: rgba(255, 255, 255, 0.8);
+            background-color: rgba(255, 255, 255, 0.9);
             padding: 20px;
             border-radius: 10px;
         }
@@ -37,36 +39,47 @@
         </ul>
     </div>
 
-    <!-- Three.js Animation Code -->
+    <!-- Three.js CDN Script -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    
+    <!-- Three.js Cube Animation -->
     <script>
-        import * as THREE from 'three';
-
         const width = window.innerWidth, height = window.innerHeight;
 
-        // init
+        // Initialize scene and camera
         const camera = new THREE.PerspectiveCamera( 70, width / height, 0.01, 10 );
         camera.position.z = 1;
 
         const scene = new THREE.Scene();
 
+        // Create cube geometry and material
         const geometry = new THREE.BoxGeometry( 0.2, 0.2, 0.2 );
         const material = new THREE.MeshNormalMaterial();
-
         const mesh = new THREE.Mesh( geometry, material );
         scene.add( mesh );
 
+        // Renderer
         const renderer = new THREE.WebGLRenderer( { antialias: true } );
         renderer.setSize( width, height );
-        renderer.setAnimationLoop( animate );
         document.body.appendChild( renderer.domElement );
 
-        // animation
+        // Animation loop
         function animate( time ) {
             mesh.rotation.x = time / 2000;
             mesh.rotation.y = time / 1000;
             renderer.render( scene, camera );
         }
+
+        renderer.setAnimationLoop( animate );
+
+        // Handle window resize to adjust canvas size
+        window.addEventListener('resize', () => {
+            const width = window.innerWidth;
+            const height = window.innerHeight;
+            renderer.setSize(width, height);
+            camera.aspect = width / height;
+            camera.updateProjectionMatrix();
+        });
     </script>
 </body>
 </html>
