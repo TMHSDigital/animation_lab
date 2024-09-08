@@ -4,6 +4,8 @@ Welcome to the **Animations Testing Lab**! This repository is designed to provid
 
 This project is hosted on **GitHub Pages**, allowing users to explore the animations directly from the browser.
 
+---
+
 ## Project Overview
 
 ### Features
